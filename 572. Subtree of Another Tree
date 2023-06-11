@@ -1,0 +1,49 @@
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         Java
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x 
+ /**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean check2(TreeNode point1,TreeNode point2){
+        if(point1==null&&point2==null){
+            return true;
+        }
+        if(point1==null&&point2!=null||point1!=null&&point2==null){
+            return false;
+        }
+        if(point1.val!=point2.val){
+            return false;
+        }
+        boolean left=check2(point1.left,point2.left);
+        boolean right=check2(point1.right,point2.right);
+        return left&&right;
+    }
+    public boolean check(TreeNode root,TreeNode subroot){
+        if(root==null)return false;
+        if(root.val==subroot.val){
+            TreeNode point1=subroot;
+            boolean checks=check2(point1,root);
+            if(checks)return true;
+        }
+        boolean left=check(root.left,subroot);
+        if(left)return true;
+        boolean right = check(root.right,subroot);
+        return left||right;
+    }
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        return check(root,subRoot);
+    }
+}
