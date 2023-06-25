@@ -1,0 +1,59 @@
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         Java
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
+ // https://chat.openai.com/share/72771d4a-50ef-43d0-a3c2-f73b432eec87
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        Set<List<Integer>> triplets = new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+           int first = nums[i];
+           int j=i+1;
+           int k=(nums.length)-1;
+
+            while(j<k){
+                int second = nums[j];
+                int third = nums[k];
+                int sum = first+second+third;
+                if(sum>0){
+                    k--;
+                }else if(sum<0){
+                    j++;
+                }
+                else if(sum==0){
+                    List<Integer> triplett = Arrays.asList(first, second, third);
+                    triplets.add(triplett);
+                    k--;
+                    j++;
+                }
+            }
+        }
+        return new ArrayList<>(triplets);
+    }
+}
+
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         Python3
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
+ class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        triplets=set() #set doesnt allow duplicates
+        for i in range(len(nums)-2):
+           first = nums[i]
+           j = i+1
+           k = len(nums)-1
+           while(j<k):
+             second = nums[j]
+             third = nums[k]
+             sum = first+second+third
+             if sum>0:
+                 k-=1
+             elif sum<0:
+                 j+=1
+             elif sum==0:
+                 triplets.add((first,second,third))
+                 j+=1
+                 k-=1
+        return triplets
