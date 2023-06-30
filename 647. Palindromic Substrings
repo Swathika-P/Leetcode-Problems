@@ -18,6 +18,7 @@ class Solution {
             }
         }
         return count;
+
     }
         public boolean isPalindrome(String str){
             int i=0,j=str.length()-1;
