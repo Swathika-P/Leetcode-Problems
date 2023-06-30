@@ -1,0 +1,33 @@
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         Java
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x 
+class Solution {
+    public int countSubstrings(String s) {
+        int count = 0;
+        String s1;
+        //String s1=""; 
+        //line 5 or 6 but line 8 should be there for accepted solution
+        for(int i=0;i<s.length();i++){
+            s1 ="";
+            for(int j=i;j<s.length();j++){
+                Character c = s.charAt(j);
+                s1+=c;
+                boolean bool = isPalindrome(s1);
+                if(bool)
+                  count++;
+            }
+        }
+        return count;
+    }
+        public boolean isPalindrome(String str){
+            int i=0,j=str.length()-1;
+            while(i<=j){
+                char a = str.charAt(i);
+                char b = str.charAt(j);
+                if(a!=b) return false;
+                i++;
+                j--;
+            }
+            return true;
+        }
+    }
