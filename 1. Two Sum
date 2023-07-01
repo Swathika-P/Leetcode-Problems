@@ -9,6 +9,7 @@ class Solution {
                 result[1]=i;
                 result[0]=map.get(target-nums[i]);
                 return result;
+
             }
             map.put(nums[i],i);
         }
