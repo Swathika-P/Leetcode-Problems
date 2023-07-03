@@ -1,0 +1,96 @@
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         Java
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x 
+//https://chat.openai.com/share/4144525f-6235-4685-af27-78e9034bd5e1
+class Solution {
+    public boolean buddyStrings(String s, String goal) {
+        if(s.length() !=goal.length()) return false;//return false if length is not equal
+        int diff1=-1,diff2=-1; //for index refering
+        Set<Character> letters = new HashSet<>(); //set to store unigue characters
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i) != goal.charAt(i)){ //to add the different elemenets 
+                if(diff1 == -1){ //finds 1st different character
+                    diff1 = i;
+                }else if(diff2 == -1){//finds 2nd differnt character
+                    diff2 = i;
+                }else{
+                    return false;//if more than 2 diff chars exists -> return false
+                }
+            }
+            letters.add(s.charAt(i));
+        }
+        //2 diff chars exist
+        if(diff1 != -1 && diff2 != -1)  //checks if the strings are equal if the chars are swapped
+            return s.charAt(diff1) ==goal.charAt(diff2) && s.charAt(diff2) ==goal.charAt(diff1);
+        //only 1 diff char exist
+        if(diff1 != -1)
+            return false;
+            //no diff
+        return letters.size() < s.length();
+    }
+}
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         c
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x 
+bool buddyStrings(char * s, char * goal){
+        int lenA = strlen(s);
+        int lenB = strlen(goal);
+
+        if(lenA != lenB) return false;
+
+        int diff1=-1,diff2=-1; 
+        bool hasDuplicate = false; 
+
+        for(int i=0;i<lenA;i++){
+            if(s[i] != goal[i]){ 
+                if(diff1 == -1){
+                    diff1 = i;
+                }else if(diff2 == -1){
+                    diff2 = i;
+                }else{
+                    return false;
+                }
+            }
+            if (!hasDuplicate && strchr(s, s[i]) != &s[i])
+            hasDuplicate = true;
+        }
+        if(diff1 != -1 && diff2 != -1)  
+            return s[diff1] ==goal[diff2] && s[diff2] ==goal[diff1];
+        if(diff1 != -1)
+            return false;
+        return hasDuplicate;
+}
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         JS
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x 
+/**
+ * @param {string} s
+ * @param {string} goal
+ * @return {boolean}
+ */
+var buddyStrings = function(s, goal) {
+    //https://chat.openai.com/share/4144525f-6235-4685-af27-78e9034bd5e1
+        if(s.length !=goal.length) return false;//return false if length is not equal
+        var diff1=-1,diff2=-1; //for index refering
+        letters = new Set(); //set to store unigue characters
+        for(var i=0;i<s.length;i++){
+            if(s.charAt(i) != goal.charAt(i)){ //to add the different elemenets 
+                if(diff1 == -1){ //finds 1st different character
+                    diff1 = i;
+                }else if(diff2 == -1){//finds 2nd differnt character
+                    diff2 = i;
+                }else{
+                    return false;//if more than 2 diff chars exists -> return false
+                }
+            }
+            letters.add(s.charAt(i));
+        }
+        //2 diff chars exist
+        if(diff1 != -1 && diff2 != -1)  //checks if the strings are equal if the chars are swapped
+            return s.charAt(diff1) ==goal.charAt(diff2) && s.charAt(diff2) ==goal.charAt(diff1);
+        //only 1 diff char exist
+        if(diff1 != -1)
+            return false;
+            //no diff
+        return letters.size < s.length;
+};
