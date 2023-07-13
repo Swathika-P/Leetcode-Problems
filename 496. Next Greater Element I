@@ -1,0 +1,62 @@
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         Java
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x 
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int[] ans = new int[nums1.length];
+        for(int i=0;i<nums1.length;i++)
+        {
+            int max = -1;
+            for(int j=0;j<nums2.length;j++)
+            {
+              int index = j;
+              if(nums1[i]==nums2[j])
+              {
+                  while(index != nums2.length)
+                  {
+                      if(nums2[index]>nums1[i])
+                      {
+                          max = nums2[index];
+                          break;
+                      }
+                      index++;
+                  }
+              }
+            }
+              ans[i] = max;
+        }
+         return ans;
+    }
+}
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x   
+                                                                         C
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x 
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize){
+        int* ans = (int*)malloc(nums1Size * sizeof(int));
+        for(int i=0;i<nums1Size;i++)
+        {
+            int max = -1;
+            for(int j=0;j<nums2Size;j++)
+            {
+              int index = j;
+              if(nums1[i]==nums2[j])
+              {
+                  while(index != nums2Size)
+                  {
+                      if(nums2[index]>nums1[i])
+                      {
+                          max = nums2[index];
+                          break;
+                      }
+                      index++;
+                  }
+              }
+            }
+              ans[i] = max;
+        }
+        *returnSize = nums1Size;  
+         return ans;
+    }
